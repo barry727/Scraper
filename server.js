@@ -23,7 +23,7 @@ var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-mongoose.connect(process.env.mongoURI || 'mongodb://localhost/scraped_news')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/scraped_news')
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
