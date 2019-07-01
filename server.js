@@ -1,3 +1,4 @@
+require('dotenv').config()
 var bodyParser = require ('body-parser');
 var mongoose = require ('mongoose');
 var logger = require ('morgan');
@@ -22,7 +23,7 @@ var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-mongoose.connect('mongodb://localhost/scraped_news')
+mongoose.connect(process.env.mongoURI || 'mongodb://localhost/scraped_news')
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
